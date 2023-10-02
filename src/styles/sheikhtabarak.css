@@ -1,0 +1,232 @@
+.sheikhtabarak-btn-main {
+    background-color: #4DD583;
+}
+
+.sheikhtabarak-btn-main:hover {
+    background-color: #46c378;
+}
+
+
+/* 
+.kNIdQM 
+ */
+.skills-list.li::before {
+    content: "▹";
+    position: absolute;
+    left: 0px;
+    color: var(--green);
+    font-size: var(--fz-sm);
+    line-height: 12px;
+}
+
+
+.list-itembo::before{
+
+    content: "▹";
+    position: absolute;
+    left: 0px;
+    color: #46c378;
+    font-size: 13px;
+    line-height: 12px;
+
+
+}
+
+
+.menu-font-in-SFMonoBold{
+    /* font-size: 13px; */
+    font-family: 'SF Mono Light';
+    font-weight: 100;
+    /* background-color: #46c378; */
+    color: #CCD6F6;
+}
+
+.experience-font-in-SFMonoBold{
+    font-family: 'SF Mono Light';
+    /* background-color: #46c378; */
+    /* color: #4CD684; */
+}
+
+
+.menu-font-in-SFMonoBold:hover {
+    /* font-size: 13px; */
+    font-family: 'SF Mono Light';
+    font-weight: 100;
+    /* background-color: #46c378; */
+    color: #4CD684;
+    /* line-height: 16.9px; */
+    letter-spacing: normal;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    text-transform: none;
+    text-decoration: none solid rgb(100, 255, 218);
+    text-align: left;
+    text-indent: 0px;
+}
+
+.menu-font-span {
+    /* font-size: 13px; */
+    font-family: 'SF Mono Light';
+    font-weight: 100;
+    /* background-color: #46c378; */
+    color: #4CD684;
+    /* line-height: 16.9px; */
+    letter-spacing: normal;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    text-transform: none;
+    /* text-decoration: none solid rgb(100, 255, 218); */
+    /* text-align: left; */
+    text-indent: 0px;
+}
+
+
+.skills-font-span{
+    font-family: 'SF Mono Light';
+}
+
+
+.menu-button{
+
+    border-radius: 5px;
+   
+    background-color: transparent;
+    border: solid 2px #4CD684;
+    color: #4CD684;
+
+    /* font-size: 13px; */
+    font-family: 'SF Mono Light';
+    font-weight: 100;
+    /* background-color: #46c378; */
+    color: #4CD684;
+    line-height: 16.9px;
+    letter-spacing: normal;
+    font-weight: 400;
+    font-style: normal;
+    font-variant: normal;
+    font-kerning: auto;
+    font-optical-sizing: auto;
+    font-stretch: 100%;
+    font-variation-settings: normal;
+    font-feature-settings: normal;
+    text-transform: none;
+    text-decoration: none solid rgb(100, 255, 218);
+    text-align: left;
+    text-indent: 0px;
+
+}
+
+
+
+
+.svg-style:hover{
+    fill: #4CD684;
+}
+
+
+@font-face {
+    font-family: 'SF Mono Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Regular'), url('SFMonoRegular.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Regular Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Regular Italic'), url('SFMonoRegularItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Light';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Light'), url('SFMonoLight.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Light Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Light Italic'), url('SFMonoLightItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Medium'), url('SFMonoMedium.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Medium Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Medium Italic'), url('SFMonoMediumItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Semibold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Semibold'), url('SFMonoSemibold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Semibold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Semibold Italic'), url('SFMonoSemiboldItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Bold'), url('SFMonoBold.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Bold Italic'), url('SFMonoBoldItalic.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Heavy';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Heavy'), url('SFMonoHeavy.woff') format('woff');
+}
+
+
+@font-face {
+    font-family: 'SF Mono Heavy Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF Mono Heavy Italic'), url('SFMonoHeavyItalic.woff') format('woff');
+}
