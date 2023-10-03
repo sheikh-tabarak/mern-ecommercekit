@@ -218,7 +218,7 @@ export default function AllProducts() {
 
         <IoMdRefreshCircle
           onClick={() => setrefreshData(!refreshData)}
-          className="text-[25px] text-yellow-500 cursor-pointer"
+          className="hidden lg:flex text-[25px] text-yellow-500 cursor-pointer"
         />
         <div className="w-full lg:w-max mb-4 lg:mb-0 ">
           <Link to={"/dashboard/products/new-product"}>

@@ -1,44 +1,67 @@
-import { ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT, SET_PRODUCT_LIST } from '../actions/ProductActions';
+import {
+  ADD_PRODUCT,
+  UPDATE_PRODUCT,
+  DELETE_PRODUCT,
+  SET_PRODUCT_LIST,
+} from "../actions/ProductActions";
 
 const initialState = {
   ProductsData: [
     {
-      id: 0,
-      name: "Nike Mercurial Vapor 13 Elite FG",
-      desc: "Test Description",
+      id: "uklBvDtAderDdrerwerweASD",
+      name: "MEN'S BETTER THAN NAKED trade; JACKET",
+      desc: "MEN'S BETTER THAN NAKED trade; JACKET designed and fashioned by imported Leather",
+      category: 1,
+      price: 11,
+      stock: 5,
+      image:
+        "http://images.thenorthface.com/is/image/TheNorthFace/236x204_CLR/mens-better-than-naked-jacket-AVMH_LC9_hero.png",
+    },
+    {
+      id: "jasdoayuewnasdksadasd",
+      name: "WOMEN'S BETTER THAN NAKED&trade; JACKET",
+      desc: "WOMEN'S BETTER THAN NAKED&trade; JACKET with heavy leather coated",
+      image:
+        "http://images.thenorthface.com/is/image/TheNorthFace/236x204_CLR/womens-better-than-naked-jacket-AVKL_NN4_hero.png",
       category: 0,
-      price: 250,
-      stock: 3,
-      image:
-        "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg",
+      price: 23,
+      stock: 10,
     },
-
     {
-      id: 1,
-      name: "Nike Mercurial Vapor 13 Elite FG",
-      desc: "Test Description",
-      category: 1,
-      price: 300,
-      stock: 0,
+      id: "lqwe0rwermksds0ifsdfls",
+      name: "WOMEN'S SINGLE-TRACK SHOE",
+      desc: "WOMEN'S SINGLE-TRACK SHOE with heavy leather coated",
       image:
-        "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg",
+        "http://images.thenorthface.com/is/image/TheNorthFace/236x204_CLR/womens-single-track-shoe-ALQF_JM3_hero.png",
+      category: 0,
+      price: 12,
+      stock: 9,
     },
-
     {
-      id: 2,
-      name: "Nike Mercurial Vapor 13 Elite FG",
-      desc: "Test Description",
-      category: 1,
-      price: 800,
+      id: "jimqwiewr9erweedfd",
+      name: "Enduro Boa&reg; Hydration Pack",
+      desc: "Enduro Boa&reg; Hydration Pack with bottled water",
+      image:
+        "http://images.thenorthface.com/is/image/TheNorthFace/236x204_CLR/enduro-boa-hydration-pack-AJQZ_JK3_hero.png",
+      category: 2,
+      price: 11,
       stock: 2,
+    },
+
+    {
+      id: "skweoirweurnsdfnsdf",
+      name: "Nike Mercurial Vapor 13 Elite FG",
+      desc: "Test Description",
       image:
-        "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/9dda6202-e2ff-4711-9a09-0fcb7d90c164/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.jpg",
+        "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/h5le0w4zurlgymfthgea/mercurial-vapor-13-elite-fg-firm-ground-soccer-cleat-14MsF2.png",
+      category: 0,
+      price: 19,
+      stock: 0,
     },
   ],
 };
 
 const ProductsReducer = (state = initialState, action) => {
-
   switch (action.type) {
     case ADD_PRODUCT:
       return {
@@ -62,15 +85,14 @@ const ProductsReducer = (state = initialState, action) => {
         ),
       };
 
-      case SET_PRODUCT_LIST:
-        return {
-          ProductsData: action.payload,
-        };
+    case SET_PRODUCT_LIST:
+      return {
+        ProductsData: action.payload,
+      };
 
     default:
       return state;
   }
-
 };
 
 export default ProductsReducer;

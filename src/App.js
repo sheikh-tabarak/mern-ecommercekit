@@ -12,7 +12,7 @@ import Dashboard from "./admin/Dashboard";
 import { useDispatch, useSelector } from "react-redux/";
 import store from "./store/store";
 import { setProductArchive } from "./store/actions/index";
-
+import Home from "./user/Home";
 
 function App() {
   const [name, setname] = useState("test");
@@ -34,19 +34,14 @@ function App() {
     fetchProjects();
   }, [refreshData]);
 
-
-  
-
   return (
-  
     <BrowserRouter>
       <Routes>
-        <Route path="/*" element={<div>Website</div>} />
+        <Route path="/*" element={<Home />} />
         <Route path="/login/*" element={<Login />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
-
   );
 }
 

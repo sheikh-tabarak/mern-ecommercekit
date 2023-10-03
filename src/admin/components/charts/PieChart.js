@@ -1,107 +1,64 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import categories from "../../data/categories";
+import { useSelector } from "react-redux";
 
-class Donut extends Component {
-  render() {
-    return (
-      <div className="donut">
-        <Chart
-          type="pie"
-          series={[63, 25]}
-          options={{
-            
-            labels: categories.map((value,index)=>{
-                return value.category
-            }),
-            colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
-            chart: {
-              width: "50px",
-            },
-            states: {
-              hover: {
-                filter: {
-                  type: "none",
-                },
+export default function Donut() {
+
+
+  return (
+    <div className="donut">
+      <Chart
+        type="pie"
+        series={categories.map((value, index) => {
+          return value.count;
+        })}
+        options={{
+          labels: categories.map((value, index) => {
+            return value.category;
+          }),
+          colors: ["#00000", "#00000", "#00000", "#00000", "#00000", "#00000"],
+          chart: {
+            width: "20px",
+          },
+          states: {
+            hover: {
+              filter: {
+                type: "none",
               },
             },
-            legend: {
-              show: false,
-            },
-            dataLabels: {
-              enabled: false,
-            },
-            hover: { mode: null },
-            plotOptions: {
+          },
+          legend: {
+            show: false,
+          },
+          dataLabels: {
+            enabled: false,
+          },
+          hover: { mode: null },
+          plotOptions: {
+            donut: {
+              expandOnClick: false,
               donut: {
-                expandOnClick: false,
-                donut: {
-                  labels: {
-                    show: false,
-                  },
+                labels: {
+                  show: false,
                 },
               },
             },
-            fill: {
-              colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
+          },
+          fill: {
+            colors: ["#46c378", "#328e56"],
+          },
+          tooltip: {
+            enabled: true,
+            theme: "dark",
+            style: {
+              fontSize: "12px",
+              fontFamily: undefined,
+              backgroundColor: "#000000",
             },
-            tooltip: {
-              enabled: true,
-              theme: "dark",
-              style: {
-                fontSize: "12px",
-                fontFamily: undefined,
-                backgroundColor: "#000000",
-              },
-            },
-          }}
-        />
-      </div>
-    );
-  }
+          },
+        }}
+      />
+    </div>
+  );
 }
-
-export default Donut;
-
-// import Chart from "react-apexcharts";
-// import Card from "../Card";
-
-// const PieChart = (props) => {
-//   const { series, options } = props;
-
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       options: {},
-//       series: [44, 55, 41, 17, 15],
-//       labels: ['A', 'B', 'C', 'D', 'E']
-//     }
-//   }
-
-// //   render() {
-
-//     return (
-//       <div className="donut">
-//         <Chart options={this.state.options} series={this.state.series} type="donut" width="380" />
-//       </div>
-//     );
-
-// //   return (
-
-// //     <>
-// //      <Chart
-// //       options={options}
-// //       series={series}
-// //       type="pie"
-// //       width="100%"
-// //       height="100%"
-// //     />
-
-// //     <div>LOL</div>
-// //     </>
-
-// //   );
-// };
-
-// export default PieChart;

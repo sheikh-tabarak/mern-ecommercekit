@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux/";
 import ManageProducts from "./inventoryManagment/ManageProducts";
 import { ToastContainer } from "react-toastify";
 import { FaUserTie } from "react-icons/fa";
-import {BiLinkExternal} from "react-icons/bi";
-import {TbLogout2} from "react-icons/tb";
+import { BiLinkExternal } from "react-icons/bi";
+import { TbLogout2 } from "react-icons/tb";
 import SideBar from "./components/sideBar";
 import RevenueOverview from "./revenueAnalysis/revenueOverview";
 
@@ -99,11 +99,8 @@ export default function Dashboard() {
               </svg>
               <span className="sr-only">Toggle sidebar</span>
             </button>
-            <Link to={"/dashboard"}>
-              <a
-                // href="/dashboard"
-                className="flex items-center justify-between mr-4"
-              >
+            <Link to={"/dashboard/overview"}>
+              <a className="flex items-center justify-between mr-4">
                 <img className="h-12" src={logo} alt="logo" />
               </a>
             </Link>
@@ -410,6 +407,11 @@ export default function Dashboard() {
             </div>
             {/* Apps */}
 
+<Link to={"/"} className="cursor-pointer">
+ <BiLinkExternal className="h-5 w-5 fill-[#1D3E39]  stroke-[#1D3E39] hover:fill-[#1D3E39]" />
+</Link>
+           
+
             {/* Dropdown menu */}
 
             <button
@@ -421,14 +423,14 @@ export default function Dashboard() {
             >
               <span className="sr-only">Open user menu</span>
 
-
               <img
-                      onClick={profileToogle}
-                      className="w-8 h-8 rounded-full"
-                      src={"https://lms.wimbiz.org/wp-content/themes/cera/assets/images/avatars/user-avatar.png"}
-                      alt="user photo"
-                    />
-
+                onClick={profileToogle}
+                className="w-8 h-8 rounded-full"
+                src={
+                  "https://lms.wimbiz.org/wp-content/themes/cera/assets/images/avatars/user-avatar.png"
+                }
+                alt="user photo"
+              />
             </button>
             {/* Dropdown menu */}
             <div
@@ -441,26 +443,20 @@ export default function Dashboard() {
             >
               <div className="py-3 px-4">
                 <span className="block text-sm font-semibold text-gray-900 dark:text-white">
-                {"Testing User"}
-                 
+                  {"Testing User"}
                 </span>
                 <span className="block text-sm text-gray-900 truncate dark:text-white">
-                 {"demouser@testing.com"}
+                  {"demouser@testing.com"}
                 </span>
               </div>
               <ul
                 className="py-1 text-gray-700 dark:text-gray-300"
                 aria-labelledby="dropdown"
-              >
-               
-              
-              </ul>
+              ></ul>
               <ul
                 className="py-1 text-gray-700 dark:text-gray-300"
                 aria-labelledby="dropdown"
               >
-               
-                
                 <li>
                   <a
                     href="https://sheikhtabarak.me"
@@ -468,10 +464,10 @@ export default function Dashboard() {
                     className="flex justify-between items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
                     <span className="flex gap-2 items-center">
-                    <FaUserTie/>
+                      <FaUserTie />
                       Contact Developer
                     </span>
-                    <BiLinkExternal/>
+                    <BiLinkExternal />
                   </a>
                 </li>
               </ul>
@@ -484,8 +480,7 @@ export default function Dashboard() {
                     to={"/login"}
                     className="flex gap-2 items-center py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                   >
-
-                    <TbLogout2/>
+                    <TbLogout2 />
                     Logout
                   </Link>
                 </li>
@@ -501,7 +496,7 @@ export default function Dashboard() {
 
       <main className="p-4 md:ml-64 h-auto pt-20">
         <Routes>
-          <Route path="/overview" element={<RevenueOverview/>}></Route>
+          <Route path="/overview" element={<RevenueOverview />}></Route>
 
           <Route path="/products/*" element={<ManageProducts />}></Route>
         </Routes>

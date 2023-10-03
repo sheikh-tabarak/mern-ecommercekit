@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loading from "../loading";
 
 export default function Login() {
+  document.title = "Login | Ecommerce Kit";
   const navigate = useNavigate();
 
   const [isLoading, setisLoading] = useState(false);
@@ -137,6 +138,16 @@ export default function Login() {
                   required=""
                 />
               </div>
+
+              <div className="flex gap-3 text-gray-500 dark:text-gray-300 text-left text-sm">
+
+                <div>
+                Username:{" "}
+                <kbd className="bg-gray-100 p-1 rounded mx-2">demo</kbd>{" "}</div>
+              <div>
+                Password:{" "}
+                <kbd className="bg-gray-100 p-1 rounded mx-2"> demo</kbd></div>
+              </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
@@ -169,33 +180,38 @@ export default function Login() {
                 onClick={(e) => {
                   e.preventDefault();
 
-                  for (let index = 0; index < UsersData.length; index++) {
-                    if (user.username === UsersData[index].username) {
-                      for (
-                        let newindex = 0;
-                        newindex < UsersData.length;
-                        newindex++
-                      ) {
-                        if (user.password === UsersData[newindex].password) {
-                          setisLogin(true);
-                        } else {
-                          setError({
-                            status: true,
-                            message:
-                              'Password for "' + user.username + '" is Wrong',
-                          });
-                        }
-                      }
-                    } else {
-                      setError({
-                        status: true,
-                        message: "No user Exists",
-                      });
-                    }
-                  }
+                  // for (let index = 0; index < UsersData.length; index++) {
+                  //   if (user.username === UsersData[index].username) {
+                  //     for (
+                  //       let newindex = 0;
+                  //       newindex < UsersData.length;
+                  //       newindex++
+                  //     ) {
+                  //       if (user.password === UsersData[newindex].password) {
+                  //         setisLogin(true);
+                  //       } else {
+                  //         setError({
+                  //           status: true,
+                  //           message:
+                  //             'Password for "' + user.username + '" is Wrong',
+                  //         });
+                  //       }
+                  //     }
+                  //   } else {
+                  //     setError({
+                  //       status: true,
+                  //       message: "No user Exists",
+                  //     });
+                  //   }
+                  // }
 
-                  if (isLogin) {
+                  if (user.username === "demo" && user.password === "demo") {
                     navigate("/dashboard/overview");
+                  } else {
+                    setError({
+                      status: true,
+                      message: "Username or Password is inncorrect",
+                    });
                   }
                 }}
                 className=" sheikhtabarak-btn-main block w-full rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

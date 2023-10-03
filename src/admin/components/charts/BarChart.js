@@ -1,56 +1,68 @@
-import React, { Component } from "react";
 import Chart from "react-apexcharts";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+export default function BarChart() {
+  const [ReduxOrderData, setReduxOrderData] = useState([]);
+  const [ReduxProductsData, setReduxProductsData] = useState([]);
 
-    this.state = {
-      options: {
+  const OrderDetails = useSelector((state) => state.orders.OrderData);
+  const ProductDetails = useSelector((state) => state.products.ProductsData);
 
-        // labels:["one","Two", "Three"],
-        // colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
-     
-        chart: {
-          id: "basic-bar"
-        },
-        xaxis: {
+  const [TotalSales, setTotalSales] = useState(0);
+  var counts = [],count = 0, i = 0;
+
+  useEffect(() => {
+    setReduxProductsData(ProductDetails);
+    setReduxOrderData(OrderDetails);
+
+
+    
+for(i=0; i<ReduxOrderData.length; i++) {
+    if(counts[ReduxOrderData[i].month] == undefined) {
+        counts[ReduxOrderData[i].month] = 1;
+        count++;
+    }
+}
+ 
+  });
+
+  return (
+    <div className="app">
+      <div className="row">
+        <div className="mixed-chart">
+          <Chart
+            className="w-400"
+
             
-          categories: [1991, 1992, 1993, 1994]
-        }
-      },
-      series: [
-        {
-            color:"#46c378",
-          name: "One",
-          data: [30, 40, 45, 50]
-        }
-        // ,
-        // {
-        //     color:"#46c378",
-        //     name: "Two",
-        //     data: [555, 40, 45, 50, 49, 60, 70, 91]
-        //   }
-      ]
-    };
-  }
+            options={{
 
-  render() {
-    return (
-      <div className="app">
-        <div className="row">
-          <div className="mixed-chart">
-            <Chart
-              options={this.state.options}
-              series={this.state.series}
-              type="bar"
-              width="400"
-            />
-          </div>
+    
+              chart: {
+                id: "basic-bar",
+               
+              },
+              xaxis: {
+                categories: ReduxOrderData?ReduxOrderData.map((value, index) => {
+                  return value.month+" "+value.Year;
+                }):"",
+              },
+            }
+          
+          }
+            series={[
+              {
+                color: "#46c378",
+                name: "Monthly Sales($)",
+                data: ReduxOrderData?ReduxOrderData.map((value, index) => {
+                  return value.total;
+                }):"",
+              },
+            ]}
+            type="bar"
+          />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default App;
