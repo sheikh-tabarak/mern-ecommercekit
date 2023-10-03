@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+[![Cover Image](https://github.com/sheikh-tabarak/ecommercekit/blob/main/src/assests/kitgif.gif?raw=true)](https://ecommercekit.sheikhtabarak.me/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Title:
+ECommerce Kit
+ 
+### View Live:
+https://ecommercekit.sheikhtabarak.me/
 
-## Available Scripts
+### Project Description:
+ECommerce Kit is a robust web-based system using React.js, Tailwind CSS, and Redux that offers comprehensive functionalities for revenue analysis, inventory management, and product registration. This system empowers businesses with valuable insights and efficient management tools. Here's an overview of its key features:
 
-In the project directory, you can run:
+### Features:
 
-### `npm start`
+#### 1. Revenue Analysis Page:
+- [x] Real-time display of total orders and sales (revenue).
+- [x] Interactive charts for revenue trends and comparisons.
+- [x] Filter revenue data by product categories.
+- [x] Interactive charts to visualize order and sales trends over time (daily, weekly, monthly, annually).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### 2. Inventory Management Page:
+- [x] List view of all products with current inventory status.
+- [x] Sorting, filtering, and search options for products.
+- [x] Functionality to update inventory levels.
+- [x] Low inventory alerts and forecasting to facilitate timely restocking
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### 3. Product Registration:
+- [x] User-friendly form to add new products to the inventory.
+- [x] Fields for product name, description, price, and initial stock level.
+- [x] Option to upload product images.
+- [x] Successful submissions instantly update the inventory and reflect changes across the dashboard.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Technologies Used:
+- [x] React js
+- [x] Redux
+- [x] Tailwind
 
-### `npm run build`
+### Libraries/Dependencies Used:
+   ```sh
+ react-toastify
+   ```
+   ```sh
+ react-apexcharts
+   ```
+   ```sh
+ react-redux
+   ```
+   ```sh
+  chart.js
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This system provides businesses with a powerful toolset to streamline revenue analysis, optimize inventory management, and facilitate seamless product registration. Its clean and modern design, coupled with the use of cutting-edge technologies, ensures an exceptional user experience.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to Clone and use:
+1. Clone the repo:
+   ```sh
+   git clone https://github.com/sheikh-tabarak/weatherstats.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+    ```sh
+   npm start
+   ```
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![Footer Image](https://raw.githubusercontent.com/sheikh-tabarak/sheikh-tabarak/main/Githubfooter.png)](https://sheikhtabarak.me/)
