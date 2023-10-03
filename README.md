@@ -10,15 +10,15 @@ https://ecommercekit.sheikhtabarak.me/
 
 ### How to navigate:
 
-- [] Home (User): https://ecommercekit.sheikhtabarak.me/
-- [] Shop Page (User): https://ecommercekit.sheikhtabarak.me/
+- [x] **Home (User):** https://ecommercekit.sheikhtabarak.me/
+- [x] **Shop Page (User)**: https://ecommercekit.sheikhtabarak.me/
 
-- [] Login Page(User): https://ecommercekit.sheikhtabarak.me/login
+- [x] **Login Page(User):** https://ecommercekit.sheikhtabarak.me/login
 
-- [] Revenue Analysis (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/overview
-- [] Inventory Managment (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/products
-- [] Product Registration (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/products/new-product
-- [] Orders Mangment (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/products/orders
+- [x] **Revenue Analysis (Admin)**: https://ecommercekit.sheikhtabarak.me/dashboard/overview
+- [x] **Inventory Managment (Admin):** https://ecommercekit.sheikhtabarak.me/dashboard/products
+- [x] **Product Registration (Admin):** https://ecommercekit.sheikhtabarak.me/dashboard/products/new-product
+- [x] **Orders Mangment (Admin):** https://ecommercekit.sheikhtabarak.me/dashboard/products/orders
 
 
 ### Project Description:
@@ -86,7 +86,7 @@ This system provides businesses with a powerful toolset to streamline revenue an
 
 1. Clone the repo:
    ```sh
-   git clone https://github.com/sheikh-tabarak/weatherstats.git
+   git clone https://github.com/sheikh-tabarak/ecommercekit.git
    ```
 2. Install NPM packages
    ```sh
