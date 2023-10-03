@@ -60,12 +60,12 @@ export default function Header() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="flex items-center justify-center text-sm font-medium text-gray-900 dark:text-white ">
+            <ul className="w-full lg:w-content lg:flex lg:gap-2 items-center justify-center text-sm font-medium text-gray-900 dark:text-white ">
               <li className="">
                 <Link to={"/shop"}>
                   <button
                     type="submit"
-                    className="mr-2 bg-[#FF9C1A]  inline-flex items-center px-5 py-2.5  text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+                    className="w-full lg:w-content justify-center lg:mr-2 bg-[#FF9C1A]  inline-flex items-center px-5 py-2.5  text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
                   >
                     Shop Now
                   </button>
@@ -75,7 +75,7 @@ export default function Header() {
                 <Link to={"/login"}>
                   <button
                     type="submit"
-                    className="mr-2 sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5  text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+                    className="my-3 w-full lg:w-content justify-center lg:mr-2 sheikhtabarak-btn-main inline-flex items-center px-5 py-2.5  text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
                   >
                     Login
                   </button>
@@ -90,7 +90,7 @@ export default function Header() {
                   <button
                     type="submit"
 
-                    className="mr-10 bg-gray-600 inline-flex items-center px-5 py-2.5  text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
+                    className=" w-full lg:w-44 justify-center lg:mr-10 bg-gray-600 inline-flex items-center px-5 py-2.5  text-sm font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
                   >
                     <span className="pr-2">
                         <BsGithub/>

@@ -8,6 +8,19 @@ ECommerce Kit
 
 https://ecommercekit.sheikhtabarak.me/
 
+### How to navigate:
+
+- [] Home (User): https://ecommercekit.sheikhtabarak.me/
+- [] Shop Page (User): https://ecommercekit.sheikhtabarak.me/
+
+- [] Login Page(User): https://ecommercekit.sheikhtabarak.me/login
+
+- [] Revenue Analysis (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/overview
+- [] Inventory Managment (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/products
+- [] Product Registration (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/products/new-product
+- [] Orders Mangment (Admin): https://ecommercekit.sheikhtabarak.me/dashboard/products/orders
+
+
 ### Project Description:
 
 ECommerce Kit is a robust web-based system using React.js, Tailwind CSS, and Redux that offers comprehensive functionalities for revenue analysis, inventory management, and product registration. This system empowers businesses with valuable insights and efficient management tools. Here's an overview of its key features:

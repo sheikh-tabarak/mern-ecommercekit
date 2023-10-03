@@ -3,6 +3,7 @@ import ProductCard from "./components/ProductCard";
 import { useSelector } from "react-redux";
 
 export default function ProductsPage() {
+  document.title = "Shop | ECommerce Kit";
   const [ReduxProductsData, setReduxProductsData] = useState([]);
   const ProductsDatais = useSelector((state) => state.products.ProductsData);
 
@@ -10,7 +11,7 @@ export default function ProductsPage() {
     setReduxProductsData(ProductsDatais);
   });
   return (
-    <div className="p-16 grid grid-cols-4 gap-4">
+    <div className="p-8 lg:p-16 grid grid-cols-1  lg:grid-cols-4 gap-4">
       {ReduxProductsData ? (
         ReduxProductsData.map((value, index) => (
           <ProductCard
