@@ -2,7 +2,7 @@
 
 ## Project Title:
 
-ECommerce Kit
+ECommerce Kit (In process of completion)
 
 ### View Live:
 
@@ -23,7 +23,7 @@ https://ecommercekit.sheikhtabarak.me/
 
 ### Project Description:
 
-ECommerce Kit is a robust web-based system using React.js, Tailwind CSS, and Redux that offers comprehensive functionalities for revenue analysis, inventory management, and product registration. This system empowers businesses with valuable insights and efficient management tools. Here's an overview of its key features:
+ECommerce Kit is a complete and robust web-based system built using MERN STACK (React.js, Node js, Express js and Mongo DB) with Tailwind CSS, and Redux as supporting techonologies that offers comprehensive functionalities for revenue analysis, inventory management, and product registration. This system empowers businesses with valuable insights and efficient management tools. Here's an overview of its key features:
 
 ### Features:
 
@@ -48,50 +48,87 @@ ECommerce Kit is a robust web-based system using React.js, Tailwind CSS, and Red
 - [x] Option to upload product images.
 - [x] Successful submissions instantly update the inventory and reflect changes across the dashboard.
 
-### Technologies Used:
+### Frontend Technologies Used:
 
 - [x] React js
 - [x] Redux
 - [x] Tailwind
 
-### Libraries/Dependencies Used:
+### Backend Technologies Used:
+
+- [x] Node js
+- [x] Express js
+- [x] Mongo db
+- [x] JWT
+
+### Frontend Libraries/Dependencies Used:
 
 ```sh
 react-toastify
 ```
-
 ```sh
 react-apexcharts
 ```
-
 ```sh
 react-redux
 ```
-
 ```sh
 chart.js
 ```
-
 ```sh
 react-dom
 ```
-
 ```sh
 uuid
 ```
+
+
+### Backend Libraries/Dependencies Used:
+
+```sh
+express
+```
+```sh
+express-jwt
+```
+```sh
+jsonwebtoken
+```
+```sh
+mongoose
+```
+```sh
+morgan
+```
+```sh
+multer
+```
+```sh
+bcryptjs
+```
+```sh
+cors
+```
+
+
+
 
 This system provides businesses with a powerful toolset to streamline revenue analysis, optimize inventory management, and facilitate seamless product registration. Its clean and modern design, coupled with the use of cutting-edge technologies, ensures an exceptional user experience.
 
 ### How to Clone and use:
 
-1. Clone the repo:
+1. Folder is having backend as "server" and frontend as "client" in the repositatory:
+
+2. Clone the branches seperately or main:
    ```sh
    git clone https://github.com/sheikh-tabarak/ecommercekit.git
    ```
-2. Install NPM packages
+3. Install NPM packages in both of folders indiviually. (server,client)
    ```sh
    npm install
    ```
+
+3. Once you'll see a folder named "node-modules in your root folder of both folders (server,client). Run both in seperate folders using:
    ```sh
    npm start
    ```
