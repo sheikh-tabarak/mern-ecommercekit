@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../../store/actions/ProductActions";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import AddProductValidator from "../components/addProductValidator";
 
 export default function CreateNewProduct() {
   const navigate = useNavigate();
@@ -40,6 +41,13 @@ export default function CreateNewProduct() {
     e.preventDefault();
     console.log("Adding");
 
+      // changing made by huzaifa
+   const result = AddProductValidator(NewProduct);
+   if(result?.message)
+   {
+     return toast.error(result.message);
+   }
+    //
     dispatch(addProduct(NewProduct));
 
     toast.success(
