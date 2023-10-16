@@ -54,7 +54,7 @@ function App() {
     // .then(console.log);
 
     const fetchProjects = async () => {
-      // try {
+      try {
 
       fetch(`${baseLink}/products`, {
         method: "GET",
@@ -66,9 +66,16 @@ function App() {
         .then((res) => {
           console.log(res);
         });
+
+         }
+         catch(e){
+           return console.log(e);
+         
+         
+         }
     };
 
-    fetchProjects();
+    // fetchProjects();
   }, [refreshData]);
 
   return (
