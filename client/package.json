@@ -14,6 +14,7 @@
     "flowbite": "^1.8.0",
     "flowbite-react": "^0.5.0",
     "jwt-decode": "^3.1.2",
+    "protobufjs": "^6.11.4",
     "react": "^18.2.0",
     "react-animated-cursor": "^2.8.1",
     "react-apexcharts": "^1.4.1",
@@ -29,8 +30,7 @@
     "redux-thunk": "^2.4.2",
     "stringify": "^5.2.0",
     "uuid": "^9.0.1",
-    "web-vitals": "^2.1.4",
-    "protobufjs":"^6.11.4"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
