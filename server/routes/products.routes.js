@@ -120,7 +120,7 @@ router.post(`/`, uploadImage.single("image"), async (req, res) => {
       description: req.body.description,
       richDescription: req.body.richDescription,
       image: req.body.image,
-      images: `${basePath}+${filaName}`,
+      image: `${basePath}${filaName}`,
       brand: req.body.brand,
       price: req.body.price,
       category: req.body.category,

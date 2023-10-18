@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -9,65 +9,51 @@ import {
 import "./App.css";
 import axios from "axios";
 import { AxiosError } from "axios";
-import authContext from "./auth/auth.context";
 import Login from "./auth/Login";
 import Dashboard from "./admin/Dashboard";
 import { useDispatch, useSelector } from "react-redux/";
 import store from "./store/store";
 import { setProductArchive } from "./store/actions/index";
-import Home from "./user/Home";
-import fetchProjects from "./APIs/products";
-import useRefreshToken from "./auth/useRefreshToken";
+import Home from "./user/home.page";
+import fetchProducts from "./APIs/products";
+import Loading from "./loading";
+import { loginUser } from "./store/actions/LoginActions";
+import validatetoken from "./auth/validateToken";
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  // const [name, setname] = useState("test");
-  // const [products, setProducts] = useState([]);
-  // const [refreshData, setrefreshData] = useState(false);
+  const [isLoading, setisLoading] = useState(false);
+  // const [refresh_username, setUsername] = useState("");
+  // const [refresh_email, setEmail] = useState("");
+  // const [refresh_userId, setUserId] = useState("");
+  // const [refresh_isAdmin, setIsAdmin] = useState(false);
+  // const [refresh_isLoggedin, setIsLoggedin] = useState(false);
+  const [Refresh, setRefresh] = useState(false);
 
-  const url = process.env.REACT_APP_SERVER_BASE_LINK;
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [userId, setUserId] = useState("");
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isLoggedin, setIsLoggedin] = useState(false);
+  const emailis = useSelector((state) => state.app.email);
+  const isAdmin = useSelector((state) => state.app.isAdmin);
+  const isLoggedin = useSelector((state) => state.app.isLoggedIn);
+  const dispatch = useDispatch();
 
-  const Token = localStorage.getItem("token");
   useEffect(() => {
-    const validatetoken = async () => {
-      await axios
-        .get(`${url}/users/refresh/token`, {
-          headers: {
-            "x-header-token": Token,
-          },
-        })
-        .then((response) => {
-          console.log(response.data.auth);
-          const isAdmin = response.data.isAdmin;
-          const uid = response.data.userId;
-          const usernamee = response.data.userName;
-          const emaill = response.data.userEmail;
-          const auth = response.data.auth;
-
-
-          setUsername(usernamee);
-          setEmail(emaill);
-          setIsAdmin(isAdmin);
-          setUserId(uid);
-          setIsLoggedin(auth);
-
-          // console.log(isLoggedin)
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-    };
-
-    validatetoken();
+    setRefresh(!Refresh);
   }, []);
 
-  return (
+  useEffect(() => {
+    const loadTokenData = async () => {
+      await validatetoken(dispatch);
+      setisLoading(false);
+    };
+    loadTokenData();
+  }, [Refresh]);
+
+  return isLoading ? (
+    <Loading />
+  ) : (
     <>
-      <authContext.Provider
+      {/* <h1> {emailis + "is now " + isAdmin + "islogin ==> " + isLoggedin}</h1> */}
+
+      {/* <authContext.Provider
         value={{
           username: username,
           email: email,
@@ -76,20 +62,33 @@ function App() {
           token: Token,
           isLoggedin: isLoggedin,
         }}
-      >
-        <BrowserRouter>
-          <Routes>
-            <Route path="/*" element={<Home />} />
-            <Route path="/login/*" element={<Login />} />
-            {isAdmin === true ? (
-              <Route path="/dashboard/*" element={<Dashboard />} />
-            ) : (
-              <></>
-            )}
-            {/* <Route path="/test/" element={"Thi is Test"}/> */}
-          </Routes>
-        </BrowserRouter>
-      </authContext.Provider>
+      > */}
+
+      {/* <StoreProvider> */}
+      {/* <ErrorBoundary> */}
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<Home/>} />
+          <Route
+            path="/login/*"
+            element={<Login setRefresh={setRefresh} Refresh={Refresh} />}
+          />
+          {/* {isAdmin === true && isLoggedin === true ? ( */}
+
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          {/* ) : ( */}
+          <></>
+          {/* )} */}
+          {/* <Route path="/test/" element={"Thi is Test"}/> */}
+        </Routes>
+      </BrowserRouter>
+
+      <ToastContainer />
+      {/* </ErrorBoundary> */}
+
+      {/* </StoreProvider> */}
+      {/* </authContext.Provider> */}
     </>
   );
 }

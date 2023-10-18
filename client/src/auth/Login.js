@@ -8,32 +8,58 @@ import Loading from "../loading";
 import { loginUser } from "../slices/authSlice";
 import { AxiosError } from "axios";
 import axios from "axios";
-import authContext from "./auth.context";
+// import {
+//   updateEmail,
+//   updateIsAdmin,
+//   updateIsLoggedin,
+//   updateUserId,
+//   updateUsername,
+// } from "../store/actions/loginStatusAction";
+import { toast } from "react-toastify";
+import validatetoken from "./validateToken";
 
-export default function Login() {
+export default function Login(props) {
   document.title = "Login | Ecommerce Kit";
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
 
   const url = process.env.REACT_APP_SERVER_BASE_LINK;
-  const [isLoading, setisLoading] = useState(false);
-  const UsersData = useSelector((state) => state.user.LoginUserData);
+  const [isLoading, setisLoading] = useState(true);
+  const [isLoggedin, setisLoggedin] = useState(false);
+  const [Refresh, setRefresh] = useState(false);
 
-  const context = useContext(authContext);
+
+  const isLoggedinfromRedux = useSelector((state) => state.app.isLoggedIn);
+  const usernamefromRedux = useSelector((state) => state.app.username);
+
 
   const [error, setError] = useState({
     status: false,
     message: "Error",
   });
+  const Token = localStorage.getItem("token");
 
   useEffect(() => {
-    console.log("Context token "+context.token);
-
-    if (context.token !== "") {
+    validatetoken(dispatch);
+    if (isLoggedinfromRedux) {
       navigate("/");
+      toast.success(
+        <>
+          <p>Logged in as {usernamefromRedux} </p>
+          {/* <p className="leading-relaxed text-sm/[12px]"></p> */}
+        </>,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "bg-white dark:bg-gray-900",
+          autoClose: 5000,
+        }
+      );
+
     }
-  }, [context.token]);
+    validatetoken();
+    setisLoading(false);
+
+  }, [Refresh]);
 
   // useEffect(() => {
 
@@ -49,7 +75,6 @@ export default function Login() {
   // });
 
   async function checkLogin() {
-
     // localStorage.setItem("test", "this is local ok storage");
 
     if (!user.email) {
@@ -65,7 +90,6 @@ export default function Login() {
     } else {
       setisLoading(true);
 
-     
       const token = await axios
         .post(`${url}/users/login`, {
           email: user.email,
@@ -73,54 +97,32 @@ export default function Login() {
         })
         .then((response) => {
           console.log(response);
-
-          localStorage.setItem('token',response.data.token)
-
-        
-
+          localStorage.setItem("token", response.data.token);
+          setRefresh(!Refresh);
           setisLoading(false);
 
           return response;
         })
         .catch((error) => {
-          console.log(error.response);
+          // console.log(error.response.data);
           setisLoading(false);
-          setError({
+         
+          const message = error.response?error.response.data:"Server didn't responds";
+         
+          try {
+             setError({
             status: true,
-            message: error.response.data,
+            message:message,
           });
+          } catch (error1) {
+            console.log(error1)
+            
+          }
+
+         
+
           return error;
- 
         });
-
-      // setisLoading(false);
-
-      // console.log("Logged in");
-      // localStorage.setItem("token", token.data.token)
-      // console.log( token)
-      // console.log( token.data.token)
-      // } catch (error) {
-      //   if (!error?.response) {
-      //     console.log("No Server Response!");
-      //   } else if (error?.code === AxiosError.ERR_NETWORK) {
-      //     console.log("Network Error");
-      //   } else if (error.response?.status === 404) {
-      //     console.log("404 - Not Found");
-      //   } else if (error?.code) {
-      //     console.log("Code: " + error.code);
-      //   } else {
-      //     console.log("Unknown Error");
-      //   };
-      //   setisLoading(false);
-      //   console.log(error);
-      //   return error.message
-
-      // setError({
-      //   status: true,
-      //   message: error.message,
-      // });
-      // return rejectWithValue(error.response.data);
-      // }
     }
   }
 
@@ -151,10 +153,11 @@ export default function Login() {
     });
   }
 
-  return isLoading === true ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <section className="bg-gray-50 dark:bg-gray-900">
+      {isLoggedinfromRedux ? "True" : "False"}
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
