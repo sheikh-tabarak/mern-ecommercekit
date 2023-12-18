@@ -1,29 +1,150 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import logo from "../assests/logo/logo.png";
 import { useState } from "react";
 import "../styles/sheikhtabarak.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../loading";
+import { loginUser } from "../slices/authSlice";
+import { AxiosError } from "axios";
+import axios from "axios";
+// import {
+//   updateEmail,
+//   updateIsAdmin,
+//   updateIsLoggedin,
+//   updateUserId,
+//   updateUsername,
+// } from "../store/actions/loginStatusAction";
+import { toast } from "react-toastify";
+import validatetoken from "./validateToken";
 
-export default function Login() {
+export default function Login(props) {
   document.title = "Login | Ecommerce Kit";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [isLoading, setisLoading] = useState(false);
-  const UsersData = useSelector((state) => state.user.LoginUserData);
+  const url = process.env.REACT_APP_SERVER_BASE_LINK;
+  const [isLoading, setisLoading] = useState(true);
+  const [isLoggedin, setisLoggedin] = useState(false);
+  const [Refresh, setRefresh] = useState(false);
+
+
+  const isLoggedinfromRedux = useSelector((state) => state.app.isLoggedIn);
+  const usernamefromRedux = useSelector((state) => state.app.username);
+
 
   const [error, setError] = useState({
     status: false,
     message: "Error",
   });
+  const Token = localStorage.getItem("token");
+
+  useEffect(() => {
+    validatetoken(dispatch);
+    if (isLoggedinfromRedux) {
+      navigate("/");
+      toast.success(
+        <>
+          <p>Logged in as {usernamefromRedux} </p>
+          {/* <p className="leading-relaxed text-sm/[12px]"></p> */}
+        </>,
+        {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          className: "bg-white dark:bg-gray-900",
+          autoClose: 5000,
+        }
+      );
+
+    }
+    validatetoken();
+    setisLoading(false);
+
+  }, [Refresh]);
+
+  // useEffect(() => {
+
+  //   try {
+  //     // const test = localStorage.getItem("token");
+
+  //     if (!test) {
+  //       console.log("This is token : " + test);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
+
+  async function checkLogin() {
+    // localStorage.setItem("test", "this is local ok storage");
+
+    if (!user.email) {
+      setError({
+        status: true,
+        message: "Email field can't be Empty",
+      });
+    } else if (!user.password) {
+      setError({
+        status: true,
+        message: "Password field can't be Empty",
+      });
+    } else {
+      setisLoading(true);
+
+      const token = await axios
+        .post(`${url}/users/login`, {
+          email: user.email,
+          password: user.password,
+        })
+        .then((response) => {
+          console.log(response);
+          localStorage.setItem("token", response.data.token);
+          setRefresh(!Refresh);
+          setisLoading(false);
+
+          return response;
+        })
+        .catch((error) => {
+          // console.log(error.response.data);
+          setisLoading(false);
+         
+          const message = error.response?error.response.data:"Server didn't responds";
+         
+          try {
+             setError({
+            status: true,
+            message:message,
+          });
+          } catch (error1) {
+            console.log(error1)
+            
+          }
+
+         
+
+          return error;
+        });
+    }
+  }
 
   const [user, setUser] = useState({
-    username: "",
+    email: "",
     password: "",
   });
 
   const [isLogin, setisLogin] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // console.log(user);
+    const data = checkLogin();
+
+    // data.data.token?console.log(data.data.token):console.log("Nope");
+
+    // data.data.token?localStorage.setItem("token", data.data.token):localStorage.setItem("token", undefined);
+
+    // // const data = await login;
+  };
 
   function Abort() {
     setError({
@@ -32,10 +153,11 @@ export default function Login() {
     });
   }
 
-  return isLoading === true ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <section className="bg-gray-50 dark:bg-gray-900">
+      {isLoggedinfromRedux ? "True" : "False"}
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -76,7 +198,14 @@ export default function Login() {
               <div></div>
             )}
 
-            <form className="space-y-4 md:space-y-6">
+            <form
+              onSubmit={
+                // e.preventDefault(), // {(e)=>
+                handleSubmit
+              }
+              // }
+              className="space-y-4 md:space-y-6"
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -86,10 +215,10 @@ export default function Login() {
                 </label>
 
                 <input
-                  value={user.username}
+                  value={user.email}
                   onChange={(value) => {
                     setUser({
-                      username: value.target.value,
+                      email: value.target.value,
                       password: user.password,
                     });
 
@@ -98,7 +227,7 @@ export default function Login() {
                       message: "No message",
                     });
 
-                    console.log(user.username);
+                    console.log(user.email);
                   }}
                   type="email"
                   name="email"
@@ -126,7 +255,7 @@ export default function Login() {
 
                     setUser({
                       password: value.target.value,
-                      username: user.username,
+                      email: user.email,
                     });
                     console.log(user.password);
                   }}
@@ -178,46 +307,61 @@ export default function Login() {
               </div>
 
               <button
-                onClick={(e) => {
-                  e.preventDefault();
+                // onClick={
+                // () =>
+                // ()=>handleSubmit
+                // {
+                // e.preventDefault();
 
-                  // for (let index = 0; index < UsersData.length; index++) {
-                  //   if (user.username === UsersData[index].username) {
-                  //     for (
-                  //       let newindex = 0;
-                  //       newindex < UsersData.length;
-                  //       newindex++
-                  //     ) {
-                  //       if (user.password === UsersData[newindex].password) {
-                  //         setisLogin(true);
-                  //       } else {
-                  //         setError({
-                  //           status: true,
-                  //           message:
-                  //             'Password for "' + user.username + '" is Wrong',
-                  //         });
-                  //       }
-                  //     }
-                  //   } else {
-                  //     setError({
-                  //       status: true,
-                  //       message: "No user Exists",
-                  //     });
-                  //   }
-                  // }
+                // const handleSubmit = (e) => {
+                //   e.preventDefault();
 
-                  if (user.username === "demo" && user.password === "demo") {
-                    navigate("/dashboard/overview");
-                  } else {
-                    setError({
-                      status: true,
-                      message: "Username or Password is inncorrect",
-                    });
-                  }
-                }}
+                // console.log(user);
+                // dispatch(loginUser(user));
+
+                // console.log(dispatch(loginUser(user)));
+
+                // };
+
+                // for (let index = 0; index < UsersData.length; index++) {
+                //   if (user.username === UsersData[index].username) {
+                //     for (
+                //       let newindex = 0;
+                //       newindex < UsersData.length;
+                //       newindex++
+                //     ) {
+                //       if (user.password === UsersData[newindex].password) {
+                //         setisLogin(true);
+                //       } else {
+                //         setError({
+                //           status: true,
+                //           message:
+                //             'Password for "' + user.username + '" is Wrong',
+                //         });
+                //       }
+                //     }
+                //   } else {
+                //     setError({
+                //       status: true,
+                //       message: "No user Exists",
+                //     });
+                //   }
+                // }
+
+                // if (user.username === "demo" && user.password === "demo") {
+                //   navigate("/dashboard/overview");
+                // } else {
+                //   setError({
+                //     status: true,
+                //     message: "Username or Password is inncorrect",
+                //   });
+                // }
+                // }
                 className=" sheikhtabarak-btn-main block w-full rounded-md  px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                type="submit"
               >
                 Login
+                {/* {auth.loginStatus === "pending" ? "Submitting..." : "Login"} */}
               </button>
             </form>
           </div>

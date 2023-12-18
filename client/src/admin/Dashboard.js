@@ -497,11 +497,10 @@ export default function Dashboard() {
       <main className="p-4 md:ml-64 h-auto pt-20">
         <Routes>
           <Route path="/overview" element={<RevenueOverview />}></Route>
-
           <Route path="/products/*" element={<ManageProducts />}></Route>
         </Routes>
       </main>
-      <ToastContainer />
+    
     </div>
   );
 }

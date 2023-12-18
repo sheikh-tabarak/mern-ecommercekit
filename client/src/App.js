@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, {useEffect, useState } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -7,78 +7,89 @@ import {
   Redirect,
 } from "react-router-dom";
 import "./App.css";
+import axios from "axios";
+import { AxiosError } from "axios";
 import Login from "./auth/Login";
 import Dashboard from "./admin/Dashboard";
 import { useDispatch, useSelector } from "react-redux/";
 import store from "./store/store";
 import { setProductArchive } from "./store/actions/index";
-import Home from "./user/Home";
+import Home from "./user/home.page";
+import fetchProducts from "./APIs/products";
+import Loading from "./loading";
+import { loginUser } from "./store/actions/LoginActions";
+import validatetoken from "./auth/validateToken";
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  const [name, setname] = useState("test");
-  const isLogin = useSelector((state) => state.checkLoginApp);
+  const [isLoading, setisLoading] = useState(false);
+  // const [refresh_username, setUsername] = useState("");
+  // const [refresh_email, setEmail] = useState("");
+  // const [refresh_userId, setUserId] = useState("");
+  // const [refresh_isAdmin, setIsAdmin] = useState(false);
+  // const [refresh_isLoggedin, setIsLoggedin] = useState(false);
+  const [Refresh, setRefresh] = useState(false);
 
-  const [products, setProducts] = useState([]);
-  const [refreshData, setrefreshData] = useState(false);
-  const baseLink = process.env.REACT_APP_SERVER_BASE_LINK;
+  const emailis = useSelector((state) => state.app.email);
+  const isAdmin = useSelector((state) => state.app.isAdmin);
+  const isLoggedin = useSelector((state) => state.app.isLoggedIn);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // fetch(
-    //   "https://dummyjson.com/RESOURCE/?limit=10&skip=5&select=key1,key2,key3"
-    // )
-    //   .then((res) => res.json())
-    //   .then(console.log);
+    setRefresh(!Refresh);
+  }, []);
 
-    // fetch('https://dummyjson.com/auth/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-
-    //     username: 'sheikhtabarak',
-    //     password: 'sheikhtabarak',
-    //     // expiresInMins: 60, // optional
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then(console.log)
-
-    /* providing token in bearer */
-    // fetch('https://dummyjson.com/auth/RESOURCE', {
-    //   method: 'GET', /* or POST/PUT/PATCH/DELETE */
-    //   headers: {
-    //     'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsInVzZXJuYW1lIjoia21pbmNoZWxsZSIsImVtYWlsIjoia21pbmNoZWxsZUBxcS5jb20iLCJmaXJzdE5hbWUiOiJKZWFubmUiLCJsYXN0TmFtZSI6IkhhbHZvcnNvbiIsImdlbmRlciI6ImZlbWFsZSIsImltYWdlIjoiaHR0cHM6Ly9yb2JvaGFzaC5vcmcvYXV0cXVpYXV0LnBuZyIsImlhdCI6MTY5NjM2NDE2NiwiZXhwIjoxNjk2MzY3NzY2fQ.586e0ikpmoTRnX8huPuz7_GogYmw6qrfTpNJknAUMqQ',
-    //     'Content-Type': 'application/json'
-    //   },
-    // })
-    // .then(res => res.json())
-    // .then(console.log);
-
-    const fetchProjects = async () => {
-      // try {
-
-      fetch(`${baseLink}/products`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          console.log(res);
-        });
+  useEffect(() => {
+    const loadTokenData = async () => {
+      await validatetoken(dispatch);
+      setisLoading(false);
     };
+    loadTokenData();
+  }, [Refresh]);
 
-    fetchProjects();
-  }, [refreshData]);
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <>
+      {/* <h1> {emailis + "is now " + isAdmin + "islogin ==> " + isLoggedin}</h1> */}
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/*" element={<Home />} />
-        <Route path="/login/*" element={<Login />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
+      {/* <authContext.Provider
+        value={{
+          username: username,
+          email: email,
+          userId: userId,
+          isAdmin: isAdmin,
+          token: Token,
+          isLoggedin: isLoggedin,
+        }}
+      > */}
+
+      {/* <StoreProvider> */}
+      {/* <ErrorBoundary> */}
+
+      <BrowserRouter>
+        <Routes>
+          <Route path="/*" element={<Home/>} />
+          <Route
+            path="/login/*"
+            element={<Login setRefresh={setRefresh} Refresh={Refresh} />}
+          />
+          {/* {isAdmin === true && isLoggedin === true ? ( */}
+
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          {/* ) : ( */}
+          <></>
+          {/* )} */}
+          {/* <Route path="/test/" element={"Thi is Test"}/> */}
+        </Routes>
+      </BrowserRouter>
+
+      <ToastContainer />
+      {/* </ErrorBoundary> */}
+
+      {/* </StoreProvider> */}
+      {/* </authContext.Provider> */}
+    </>
   );
 }
 

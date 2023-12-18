@@ -11,6 +11,7 @@ const OrderRouter = require("./routes/orders.routes");
 const cors = require("cors");
 const authJwt = require("./configuration/jwt");
 const errorHandler = require('./configuration/error-handler');
+const path = require('path')
 
 const API = process.env.ECOMMERCE_APP_URL;
 
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 app.use(morgan("tiny"));
 app.use(authJwt());
 app.use(errorHandler);
+// app.use('/public/uploads', express.static(path.join(__dirname, '/public/uploads')))
 app.use('/public/uploads',express.static(__dirname+'/public/uploads'))
 
 app.use(`${API}/products/`, ProductRouter);

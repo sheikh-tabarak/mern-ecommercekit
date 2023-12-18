@@ -1,5 +1,6 @@
 const { expressjwt } = require('express-jwt');
 
+
  function authJwt() {
   const secret = process.env.MY_SECRET;
   const API = process.env.ECOMMERCE_APP_URL;
@@ -24,6 +25,10 @@ const { expressjwt } = require('express-jwt');
       },
       `${API}/users/login`,
       `${API}/users/register`,
+      `${API}/users/refresh/token`,
+
+   
+      
     ],
   });
 }
@@ -37,5 +42,8 @@ async function isRevoke(req, payload){
   // done();
   return false;
 }
+
+
+
 
 module.exports = authJwt;

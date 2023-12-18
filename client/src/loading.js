@@ -6,9 +6,6 @@ export default function Loading() {
     <div className="grid h-screen place-items-center">
          <img src={loading} alt="" />
         </div>
-
-   
-
   )
 }
  

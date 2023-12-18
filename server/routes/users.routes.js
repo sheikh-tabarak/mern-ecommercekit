@@ -3,6 +3,7 @@ const router = express.Router();
 const { User } = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const verfiyJWT = require("../configuration/verfiy");
 
 const secret = process.env.MY_SECRET;
 
@@ -11,7 +12,6 @@ router.get("/", async (req, res) => {
 
   if (!userList) {
     res.status(500).json({ success: false });
-  
 
   }
 
@@ -69,6 +69,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+
 router.post("/login", async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
 
@@ -79,6 +80,8 @@ router.post("/login", async (req, res) => {
       const token = jwt.sign(
         {
           userId: user.id,
+          userEmail:user.email,
+          userName:user.name,
           isAdmin:user.isAdmin
         },
         secret,
@@ -97,6 +100,12 @@ router.post("/login", async (req, res) => {
     }
   }
 });
+
+
+
+router.get('/refresh/token',verfiyJWT,(req,res)=>{
+  res.send("Verfied Token Bro");
+})
 
 
 
